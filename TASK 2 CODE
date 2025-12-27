@@ -1,0 +1,25 @@
+char command;
+
+void setup() {
+  Serial.begin(9600);    // Simulates Bluetooth communication
+  pinMode(8, OUTPUT);    // Output controls LED or relay
+  Serial.println("Ready");
+}
+
+void loop() {
+  if (Serial.available()) {
+    command = Serial.read();
+
+    if (command == '1') {
+      digitalWrite(8, HIGH);
+      Serial.println("Device ON");
+    } 
+    else if (command == '0') {
+      digitalWrite(8, LOW);
+      Serial.println("Device OFF");
+    } 
+    else {
+      Serial.println("Invalid - use 1 or 0");
+    }
+  }
+}
