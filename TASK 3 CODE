@@ -1,0 +1,23 @@
+int temp = 0;
+
+void setup()
+{
+  pinMode(A2, INPUT);
+  Serial.begin(9600);
+  pinMode(3, OUTPUT);
+  pinMode(7, OUTPUT);
+}
+
+void loop()
+{
+  temp = (-40 + 0.488155 * (analogRead(A2) - 20));
+  Serial.println(temp);
+  if (temp <= 30) {
+    digitalWrite(3, HIGH);
+    digitalWrite(7, LOW);
+  } else {
+    digitalWrite(7, HIGH);
+    digitalWrite(3, LOW);
+  }
+  delay(10); // Delay a little bit to improve simulation performance
+}
